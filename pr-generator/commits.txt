@@ -1,2 +1,1 @@
-feat: reorganize PR description generator to root directory
-docs: update commits.txt
+chore: update commits.txt in PR description documentation
