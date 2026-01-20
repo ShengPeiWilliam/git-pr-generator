@@ -1,2 +1,2 @@
+feat: reorganize PR description generator to root directory
 docs: update commits.txt
-feat: implement PR description generator with commit analysis

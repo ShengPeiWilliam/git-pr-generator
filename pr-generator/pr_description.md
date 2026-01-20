@@ -1,10 +1,10 @@
 Title:
-feat: implement PR description generator with c...
+feat: reorganize PR description generator to ro...
 
 Description:
 ## Summary
 Add a new feature and update documentation.
 
 ## Key Features
-- Implement PR description generator with commit analysis
+- Reorganize PR description generator to root directory
 - Update commits.txt
