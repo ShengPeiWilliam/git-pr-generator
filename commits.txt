@@ -1,2 +1,0 @@
-8bb44b4 feat: implement PR description generator with commit analysis
-06378a3 feat: add SKILL.md with usage guidelines and format specifications
