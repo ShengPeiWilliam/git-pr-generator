@@ -1,10 +1,9 @@
 Title:
-feat: reorganize PR description generator to ro...
+chore: update commits.txt in PR description doc...
 
 Description:
 ## Summary
-Add a new feature and update documentation.
+Update codebase.
 
 ## Key Features
-- Reorganize PR description generator to root directory
-- Update commits.txt
+- Update commits.txt in PR description documentation
