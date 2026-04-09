@@ -1,5 +1,7 @@
 # PR Description Generator
+Turns git commits into structured PR descriptions by parsing conventional commit messages and organizing them by type.
 
+## Motivation
 Writing PR descriptions manually is repetitive, especially when commits already contain the information. This tool parses conventional commits and generates structured PR descriptions automatically.
 
 ## Design Decisions
