@@ -1,37 +1,25 @@
 # PR Description Generator
 
-Transform your git commits into professional Pull Request descriptions automatically.
+Writing PR descriptions manually is repetitive, especially when commits already contain the information. This tool parses conventional commits and generates structured PR descriptions automatically.
 
-## Quick Start
+## Design Decisions
 
-### 1. Prepare Your Commits
+**Why conventional commits?**
 
+The tool assumes commits follow the `type: description` format (feat, fix, docs, etc.). This constraint is intentional: if commits are already well-structured, the PR description is just a reorganization of existing information, not a generation problem.
+
+**Why file-based input?**
+
+Instead of reading git history directly, the tool takes a text file of commit messages. This keeps the tool decoupled from any specific git workflow and makes it easy to filter or edit commits before generating.
+
+## Usage
 ```bash
 git log --format=%s -n 5 > commits.txt
-```
-
-This creates a file with your last 5 commit messages (without hashes).
-
-### 2. Generate PR Description
-
-```bash
 python scripts/main.py --from-file commits.txt
-```
-
-### 3. Check Output
-
-The generated PR description is saved to `pr_description.md`:
-
-```bash
 cat pr_description.md
 ```
 
-Copy the content to your GitHub Pull Request description.
-
 ## Output Format
-
-The generator creates a structured PR description:
-
 ```markdown
 Title:
 feat: add feature
@@ -46,15 +34,19 @@ Add new feature with related improvements.
 - Update documentation
 ```
 
-## Requirements
+## Reflections & Next Steps
 
-- Python 3.8+
+The current approach works well for repos with disciplined commit hygiene. It breaks down when commits are vague ("fix stuff") or don't follow conventional format.
 
-## How It Works
+Next steps:
+- **LLM fallback**: use a language model to infer intent from messy commits when conventional format isn't present.
+- **Git integration**: read from git history directly with optional filtering by branch, date range, or author.
+- **Template support**: let users define custom PR templates to match their team's format.
 
-1. **Parses commits** in conventional commit format (`type: description`)
-2. **Categorizes** by type (feat, fix, docs, etc.)
-3. **Generates** professional title and summary
-4. **Lists** key features and changes
+## Tools
 
-See `SKILL.md` for detailed guidelines.
+Python 3.8+
+
+## References
+
+- [Conventional Commits](https://www.conventionalcommits.org/) — commit message format used for parsing and categorization.
