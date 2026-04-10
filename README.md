@@ -1,8 +1,8 @@
 # PR Description Generator
-Turns git commits into structured PR descriptions by parsing conventional commit messages and organizing them by type.
+Turns git commits into structured PR descriptions automatically, reducing the time spent writing PR descriptions manually.
 
 ## Motivation
-Writing PR descriptions manually is repetitive, especially when commits already contain the information. This tool parses conventional commits and generates structured PR descriptions automatically.
+Agent skill frameworks let a single SKILL.md file define reusable agent behaviors and reduce token overhead significantly. Writing PR descriptions is something I do regularly, so it felt like a natural first task to automate with this approach.
 
 ## Design Decisions
 
@@ -14,36 +14,22 @@ The tool assumes commits follow the `type: description` format (feat, fix, docs,
 
 Instead of reading git history directly, the tool takes a text file of commit messages. This keeps the tool decoupled from any specific git workflow and makes it easy to filter or edit commits before generating.
 
-## Usage
+## Architecture
+
+Pass a text file of commit messages to the generator:
 ```bash
 git log --format=%s -n 5 > commits.txt
 python scripts/main.py --from-file commits.txt
-cat pr_description.md
 ```
 
-## Output Format
-```markdown
-Title:
-feat: add feature
-
-Description:
-## Summary
-Add new feature with related improvements.
-
-## Key Features
-- Add feature
-- Bug fix
-- Update documentation
-```
+The output is saved to `pr_description.md` with a structured title and summary organized by commit type.
 
 ## Reflections & Next Steps
 
-The current approach works well for repos with disciplined commit hygiene. It breaks down when commits are vague ("fix stuff") or don't follow conventional format.
+The tool works well when commits follow conventional format. It breaks down when commit messages are vague or inconsistent.
 
 Next steps:
 - **LLM fallback**: use a language model to infer intent from messy commits when conventional format isn't present.
-- **Git integration**: read from git history directly with optional filtering by branch, date range, or author.
-- **Template support**: let users define custom PR templates to match their team's format.
 
 ## Tools
 
